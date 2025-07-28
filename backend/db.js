@@ -23,16 +23,29 @@ const connectDB = async () => {
             throw new Error('MONGO_URI environment variable is not defined');
         }
         
-        // MongoDB Atlas connection options with TLS workaround for Windows
+        // Mongoose connection options for MongoDB Atlas (cloud)
         const options = {
-            // Basic timeout settings
-            serverSelectionTimeoutMS: 15000,
-            connectTimeoutMS: 20000,
+            // Connection pool settings
+            maxPoolSize: 10, // Maximum number of connections in the pool
+            minPoolSize: 2,  // Minimum number of connections in the pool
             
-            // TLS workaround for Windows development (NOT for production)
-            tls: true,
-            tlsAllowInvalidCertificates: true,
-            tlsAllowInvalidHostnames: true,
+            // Timeout settings
+            serverSelectionTimeoutMS: 10000, // Increased timeout for Atlas
+            socketTimeoutMS: 45000, // How long to wait for a response
+            connectTimeoutMS: 15000, // Increased timeout for initial connection
+            
+            // TLS/SSL settings for Atlas compatibility (Windows fix)
+            tls: true, // Enable TLS
+            tlsInsecure: false, // Keep secure connections
+            tlsAllowInvalidCertificates: false, // Don't allow invalid certs
+            tlsAllowInvalidHostnames: false, // Don't allow invalid hostnames
+            
+            // Other settings
+            maxIdleTimeMS: 30000, // Close connections after 30 seconds of inactivity
+            
+            // Atlas-specific settings
+            retryWrites: true, // Enable retryable writes
+            w: 'majority' // Write concern for data safety
         };
         
         // Establish connection to MongoDB
