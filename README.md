@@ -1,4 +1,4 @@
-# IndraNav: Adaptive Driving System
+<h1 align="center"> IndraNav: Adaptive Driving System </h1>
 
 <div align="center">
 
