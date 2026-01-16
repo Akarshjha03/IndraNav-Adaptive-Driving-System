@@ -14,6 +14,14 @@ An intelligent drowsiness detection system that uses real-time computer vision t
 
 ---
 
+## Tech Stack
+
+<p align="center">
+  <a href="https://skillicons.dev">
+    <img src="https://skillicons.dev/icons?i=js,ts,tailwindcss,vite,python,pytorch,fastapi,docker" />
+  </a>
+</p>
+
 ## 📋 Table of Contents
 
 - [Overview](#-overview)
